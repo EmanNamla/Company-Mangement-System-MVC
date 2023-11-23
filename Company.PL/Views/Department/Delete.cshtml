@@ -1,0 +1,18 @@
+﻿@model DepartmentViewModel
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Are You Sure Delete @Model.Name Department?</h1>
+
+<p>You Cant Delete a Department With Employee!! </p>
+
+<div asp-validation-summary="All"> </div>
+<form asp-action="Delete">
+
+    
+    <partial name="_PartialViews/DeleteDetailsPartialView" />
+
+<input type="submit" value="Delete" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-primary"/>||
+    <a asp-action="Index">Cancal</a>
+</form>

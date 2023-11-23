@@ -1,0 +1,50 @@
+﻿	@model RegisterViewModel
+@{
+	ViewData["Title"] = "Register";
+	Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+<!-- main -->
+<div class="main-w3layouts wrapper">
+	<h1> SignUp Form</h1>
+	<div class="main-agileinfo">
+		<div class="agileits-top">
+			<form asp-action="Register" >
+				<input class="text" asp-for="@Model.FName" placeholder="FName" required="">
+				<span asp-validation-for="@Model.FName" class="btn btn-danger"></span>
+				<br />
+
+				<input class="text" asp-for="@Model.LName" placeholder="LName" required="">
+				<span asp-validation-for="@Model.LName" class="btn btn-danger"></span>
+				<br />
+
+				<input class="text email" type="email" asp-for="@Model.Email" placeholder="Email" required="">
+				<span asp-validation-for="@Model.Email" class="btn btn-danger"></span>
+				<br />
+
+				<input class="text" asp-for="@Model.Password" placeholder="Password" required="">
+				<span asp-validation-for="@Model.Password" class="btn btn-danger"></span>
+				<br />
+
+				<input class="text w3lpass" type="password" asp-for="@Model.ConfirmPassword" placeholder="Confirm Password" required="">
+				<span asp-validation-for="@Model.ConfirmPassword" class="btn btn-danger"></span>
+				<br />
+
+				<div class="wthree-text">
+					<label class="anim">
+						<input type="checkbox" asp-for="@Model.IsAgree" class="checkbox" required="">
+						<span asp-validation-for="@Model.IsAgree" class="btn btn-danger"></span>
+						<span>I Agree To The Terms & Conditions</span>
+					</label>
+					<div class="clear"> </div>
+				</div>
+				<input type="submit" value="SIGNUP">
+			</form>
+			<p>Don't have an Account? <a asp-action="Login"> Login Now!</a></p>
+		</div>
+	</div>
+
+</div>
+@section VaildationScriptSection
+{
+<partial name="_ValidationScriptsPartial"></partial>
+}

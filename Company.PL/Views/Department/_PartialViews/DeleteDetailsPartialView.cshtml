@@ -1,0 +1,19 @@
+﻿@model DepartmentViewModel
+ <div>
+        <label asp-for="@Model.Code" class="col-form-label"></label>
+    <input class="form-control" asp-for="@Model.Code"  />
+        <span asp-validation-for="@Model.Code" class="btn btn-danger"></span>
+    </div>
+
+      <div>
+        <label asp-for="@Model.Name" class="col-form-label"></label>
+    <input class="form-control" asp-for="@Model.Name"  />
+        <span asp-validation-for="@Model.Name" class="btn btn-danger"></span>
+    </div>
+
+
+<div>
+    <label class="col-form-label">Date Of Creation</label>
+    <input class="form-control" asp-for="@Model.DateOfCreation"  />
+    <span asp-validation-for="@Model.DateOfCreation" class="btn btn-danger"></span>
+</div>

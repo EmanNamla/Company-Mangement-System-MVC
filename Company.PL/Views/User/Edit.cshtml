@@ -1,0 +1,29 @@
+﻿@model UserViewModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>Edit @Model.Email.Split('@')[0]</h1>
+<form asp-action="Edit">
+
+    <div>
+        <label asp-for="@Model.Fname" class="col-form-label"></label>
+        <input class="form-control" asp-for="@Model.Fname" class="btn btn-danger" />
+    
+    </div>
+
+    <div>
+        <label asp-for="@Model.Lname" class="col-form-label"></label>
+        <input class="form-control" asp-for="@Model.Lname" class="btn btn-danger" />
+      
+    </div>
+
+    <div>
+        <label asp-for="@Model.PhoneNumber" class="col-form-label"></label>
+        <input class="form-control" asp-for="@Model.PhoneNumber" class="btn btn-danger" />
+    </div>
+ 
+
+    <input type="submit" value="Save" class="btn btn-primary" />  ||
+    <a asp-action="Index" class="btn btn-light">Back To List</a>
+</form>

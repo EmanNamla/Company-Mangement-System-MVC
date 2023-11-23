@@ -1,0 +1,63 @@
+﻿@model EmployeeViewModel
+@inject IDepartmentRepository DR
+@{
+    //var departments = new SelectList(ViewBag.Departments, "Id", "Name");
+    var departments =  new SelectList( DR.GetAllAsyn().Result, "Id", "Name");
+}
+
+    <input asp-for="@Model.ImageName" hidden/>
+
+<div>
+    <label asp-for="@Model.Name" class="col-form-label"></label>
+    <input class="form-control" asp-for="@Model.Name" class="btn btn-danger" />
+    <span asp-validation-for="@Model.Name"></span>
+</div>
+
+<div>
+    <label asp-for="@Model.ImageName" class="col-form-label"></label>
+    <input class="form-control" asp-for="@Model.Image" class="btn btn-danger" />
+</div>
+
+<div>
+    <label asp-for="@Model.Age" class="col-form-label"></label>
+    <input class="form-control" asp-for="@Model.Age" class="btn btn-danger" />
+    <span asp-validation-for="@Model.Age"></span>
+</div>
+<div>
+    <label asp-for="@Model.Address" class="col-form-label"></label>
+    <input class="form-control" asp-for="@Model.Address" class="btn btn-danger" />
+    <span asp-validation-for="@Model.Address"></span>
+</div>
+<div>
+    <label asp-for="@Model.Salary" class="col-form-label"></label>
+    <input class="form-control" asp-for="@Model.Salary" class="btn btn-danger" />
+    <span asp-validation-for="@Model.Salary"></span>
+</div>
+
+<div>
+    <label asp-for="@Model.department" class="col-form-label"></label>
+    <select class="form-control" asp-items="departments" asp-for="DepartmentId">
+    <option value="@null">-----Select Department-------</option>
+    </select>
+</div>
+
+<div>
+    <label asp-for="@Model.Email" class="col-form-label"></label>
+    <input class="form-control" asp-for="@Model.Email" class="btn btn-danger" />
+    <span asp-validation-for="@Model.Email"></span>
+</div>
+<div>
+    <label asp-for="@Model.PhoneNumber" class="col-form-label"></label>
+    <input class="form-control" asp-for="@Model.PhoneNumber" class="btn btn-danger" />
+    <span asp-validation-for="@Model.PhoneNumber"></span>
+</div>
+<div>
+    <label asp-for="@Model.ISActive" class="col-form-label"></label>
+    <input class="form-control" asp-for="@Model.ISActive" class="btn btn-danger" />
+    <span asp-validation-for="@Model.ISActive" class="btn btn-danger"></span>
+</div>
+<div>
+    <label asp-for="@Model.HireDate" class="col-form-label"></label>
+    <input class="form-control" asp-for="@Model.HireDate" />
+    <span asp-validation-for="@Model.HireDate" class="btn btn-danger"></span>
+</div>
