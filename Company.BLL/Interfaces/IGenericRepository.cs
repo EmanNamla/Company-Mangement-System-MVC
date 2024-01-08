@@ -1,4 +1,5 @@
 ﻿using Company.DAL.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,8 @@ namespace Company.BLL.Interfaces
         Task< IEnumerable<T>> GetAllAsyn();
 
         void Update(T item);
+
+        public void Detach(T entity);
+      
     }
 }

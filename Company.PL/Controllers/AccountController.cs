@@ -30,15 +30,23 @@ namespace Company.PL.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				var user = new ApplicationUser
+                var use = await userManager.FindByEmailAsync(model.Email);
+				if(use.Email.ToLower()==model.Email.ToLower())
 				{
-					UserName = model.Email,
+                    ModelState.AddModelError(string.Empty, "Email is already Exist");
+					return View(model);
+                }
+
+                var user = new ApplicationUser
+				{
+					UserName = model.Email.Split('@')[0],
 					Email = model.Email,
 					FName = model.FName,
 					LName = model.LName,
 					IsAgree = model.IsAgree
 				};
-				var result = await userManager.CreateAsync(user, model.Password);
+              
+                var result = await userManager.CreateAsync(user, model.Password);
 				if (result.Succeeded)
 				{
 					return RedirectToAction("Login");

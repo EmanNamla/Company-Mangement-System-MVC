@@ -2,11 +2,21 @@
 @{
     ViewData["Title"] = "Edit";
 }
-
-<h1>Edit</h1>
+<h4>Edit @Model.Name Profile</h4>
 
 <form asp-action="Edit" enctype="multipart/form-data">
   
+    <div>
+        @if (Model.ImageName != null)
+        {
+            <img src="~/Files/Images/@Model.ImageName" class="border-info rounded-circle" style="max-width: 150px" alt="Emloyee Image">
+        }
+        else
+        {
+            <img src="~/images/6596121.png" class="rounded" width="40" height="40" alt="Emloyee Image" />
+        }
+    </div>
+
     <partial name="_PartialViews/_CreateEditPartialView" />
 
 

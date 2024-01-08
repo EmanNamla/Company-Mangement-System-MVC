@@ -5,30 +5,37 @@
     //var departments = new SelectList(DR.GetAll(), "Id", "Name");
 }
 
-<div>
-    <img src="~/Files/Images/@Model.ImageName" class="rounded" width="40" height="40" alt="Emloyee Image">
-</div>
-<br />
+ <div>
+        @if (Model.ImageName != null)
+        {
+            <img src="~/Files/Images/@Model.ImageName" class="border-info rounded-circle" style="max-width: 150px" alt="Emloyee Image">
+        }
+        else
+        {
+            <img src="~/images/6596121.png" class="rounded" width="40" height="40" alt="Emloyee Image" />
+        }
+    </div>
+
 <div>
     <label asp-for="@Model.Name" class="col-form-label"></label>
     <input class="form-control" asp-for="@Model.Name" readonly />
-    <span asp-validation-for="@Model.Name" class="btn btn-danger"></span>
+    <span asp-validation-for="@Model.Name" ></span>
 </div>
 
 <div>
     <label asp-for="@Model.Age" class="col-form-label"></label>
     <input class="form-control" asp-for="@Model.Age" readonly />
-    <span asp-validation-for="@Model.Age" class="btn btn-danger"></span>
+    <span asp-validation-for="@Model.Age" ></span>
 </div>
 <div>
     <label asp-for="@Model.Address" class="col-form-label"></label>
     <input class="form-control" asp-for="@Model.Address" readonly />
-    <span asp-validation-for="@Model.Address" class="btn btn-danger"></span>
+    <span asp-validation-for="@Model.Address"></span>
 </div>
 <div>
     <label asp-for="@Model.Salary" class="col-form-label"></label>
     <input class="form-control" asp-for="@Model.Salary" readonly />
-    <span asp-validation-for="@Model.Salary" class="btn btn-danger"></span>
+    <span asp-validation-for="@Model.Salary"></span>
 </div>
 
 <div>
@@ -41,20 +48,20 @@
 <div>
     <label asp-for="@Model.Email" class="col-form-label"></label>
     <input class="form-control" asp-for="@Model.Email" readonly />
-    <span asp-validation-for="@Model.Email" class="btn btn-danger"></span>
+    <span asp-validation-for="@Model.Email" ></span>
 </div>
 <div>
     <label asp-for="@Model.PhoneNumber" class="col-form-label"></label>
     <input class="form-control" asp-for="@Model.PhoneNumber" readonly />
-    <span asp-validation-for="@Model.PhoneNumber" class="btn btn-danger"></span>
+    <span asp-validation-for="@Model.PhoneNumber" ></span>
 </div>
 <div>
     <label asp-for="@Model.ISActive" class="col-form-label"></label>
     <input class="form-control" asp-for="@Model.ISActive" readonly />
-    <span asp-validation-for="@Model.ISActive" class="btn btn-danger"></span>
+    <span asp-validation-for="@Model.ISActive" ></span>
 </div>
 <div>
     <label asp-for="@Model.HireDate" class="col-form-label"></label>
     <input class="form-control" asp-for="@Model.HireDate" readonly />
-    <span asp-validation-for="@Model.HireDate" class="btn btn-danger"></span>
+    <span asp-validation-for="@Model.HireDate" ></span>
 </div>

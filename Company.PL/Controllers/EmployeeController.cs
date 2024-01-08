@@ -10,6 +10,7 @@ using Microsoft.CodeAnalysis.Operations;
 //using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace Company.PL.Controllers
@@ -53,8 +54,10 @@ namespace Company.PL.Controllers
 
             if (ModelState.IsValid)
             {
-
-                employeeVM.ImageName = DocumentSettings.UploadFile(employeeVM.Image, "Images");
+                if (employeeVM.Image != null)
+                {
+                    employeeVM.ImageName = DocumentSettings.UploadFile(employeeVM.Image, "Images");
+                }
 
                 var MappedEmployee = mapper.Map<EmployeeViewModel, Employee>(employeeVM);
                 await unitOfWork.EmployeeRepository.AddAsyn(MappedEmployee);
@@ -89,22 +92,40 @@ namespace Company.PL.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> Edit([FromRoute] int id, EmployeeViewModel employeeVM)
         {
-
             if (ModelState.IsValid)
             {
+                var existingEmployee = await unitOfWork.EmployeeRepository.GetAsyn(id);
+
+                if (existingEmployee == null)
+                {
+                    return NotFound();
+                }
+
                 if (employeeVM.Image is not null)
                 {
+                    // Upload the new image
                     employeeVM.ImageName = DocumentSettings.UploadFile(employeeVM.Image, "Images");
 
-                }
-                var MappedEmployee = mapper.Map<EmployeeViewModel, Employee>(employeeVM);
+                    // Delete the image 
+                    if (!string.IsNullOrEmpty(existingEmployee.ImageName))
+                    {
+                        DocumentSettings.DeleteFile(existingEmployee.ImageName, "Images");
 
-                unitOfWork.EmployeeRepository.Update(MappedEmployee);
+                    }
+                }
+                unitOfWork.EmployeeRepository.Detach(existingEmployee);
+
+                // Update  employee details
+                var mappedEmployee = mapper.Map<EmployeeViewModel, Employee>(employeeVM);
+                unitOfWork.EmployeeRepository.Update(mappedEmployee);
                 await unitOfWork.Complete();
+
                 return RedirectToAction("Index");
             }
+
             return View(employeeVM);
         }
 
@@ -137,9 +158,6 @@ namespace Company.PL.Controllers
                 ModelState.AddModelError(string.Empty, ex.Message);
                 return View(employeeVM);
             }
-            
-            
-           
         }
     }
 }

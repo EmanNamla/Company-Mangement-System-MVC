@@ -3,7 +3,7 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete @Model.Name</h1>
+<h4>Delete @Model.Name Profile</h4>
 <div asp-validation-summary="All"></div>
 
 <form asp-action ="Delete">
@@ -11,6 +11,6 @@
     <partial name="_PartialViews/_DeleteDetailsView" />
     <input type="hidden" asp-for="@Model.ImageName" />
 
-    <input type="submit" value="Delete" class="btn btn-primary" />
+    <input type="submit" value="Delete" class="btn btn-danger" />
     <a asp-action="Index">Back To Home</a>
 </form>

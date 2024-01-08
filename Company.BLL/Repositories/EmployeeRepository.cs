@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,6 +18,11 @@ namespace Company.BLL.Repositories
         public EmployeeRepository(CompanyDbContext dbContext):base(dbContext)
         {
             this.dbContext = dbContext;
+        }
+
+        public async Task<bool> AnyAsync(Expression<Func<Employee, bool>> predicate)
+        {
+            return await dbContext.Employees.AnyAsync(predicate); 
         }
 
         public IQueryable<Employee> GetEmployeeByName(string name)

@@ -48,5 +48,19 @@ namespace Company.BLL.Repositories
             dbContext.Update(item);
            
         }
+
+        public void Detach(T entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
+            var entry = dbContext.Entry(entity);
+            if (entry != null)
+            {
+                entry.State = EntityState.Detached;
+            }
+        }
     }
 }

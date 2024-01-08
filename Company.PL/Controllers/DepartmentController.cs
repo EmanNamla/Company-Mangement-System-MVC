@@ -112,12 +112,20 @@ namespace Company.PL.Controllers
 
             if (id != MapperdDept.Id)
                 return BadRequest();
+
             try
             {
+                var departmentHasEmployees = await unitOfWork.EmployeeRepository.AnyAsync(e => e.DepartmentId == MapperdDept.Id);
+
+                if (departmentHasEmployees)
+                {
+                    ModelState.AddModelError(string.Empty, "Cannot delete. There are employees associated with this department.");
+                    return View(DepartmentVM);
+                }
+
                 unitOfWork.DepartmentRepository.Delete(MapperdDept);
                 await unitOfWork.Complete();
                 return RedirectToAction(nameof(Index));
-
             }
             catch (Exception ex)
             {

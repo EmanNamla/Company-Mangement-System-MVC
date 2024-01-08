@@ -12,7 +12,7 @@ namespace Company.PL.ViewModels
 		[Required(ErrorMessage = "Password is Required")]
 		[DataType(DataType.Password)]
 		public string Password { get; set; }
-		[Required]
+		[Required(ErrorMessage = "Dont Need The RemenberYou?")]
 		public bool RemenberMe { get; set; }
 	}
 }

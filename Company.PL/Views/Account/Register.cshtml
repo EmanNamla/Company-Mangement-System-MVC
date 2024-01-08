@@ -9,6 +9,7 @@
 	<div class="main-agileinfo">
 		<div class="agileits-top">
 			<form asp-action="Register" >
+				<div asp-validation-summary="All" class="btn btn-danger"></div>
 				<input class="text" asp-for="@Model.FName" placeholder="FName" required="">
 				<span asp-validation-for="@Model.FName" class="btn btn-danger"></span>
 				<br />
